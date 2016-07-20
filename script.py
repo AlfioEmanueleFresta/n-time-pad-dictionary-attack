@@ -12,6 +12,7 @@ def strbin(s):
     return " ".join("{:08b}".format(ord(x)) for x in s)
 
 
+# Messages and key -- CHANGE THESE!
 m1  = "makes"
 m2  = "sense"
 key = "#m$e%"
@@ -20,8 +21,16 @@ key = "#m$e%"
 #  dictionary is lowercase.
 m1, m2 = m1.lower(), m2.lower()
 
+# Check that lengths are valid
+if not (len(m1) == len(m2) and len(m2) == len(key)):
+    print("Error: Both messages and the key all need to be of equal length.")
+    exit(1)
+
+# Calculate ciphers
 c1 = sxor(m1, key)
 c2 = sxor(m2, key)
+
+# Difference
 cx = sxor(c1, c2)
 
 # Prints messages and keys in binary
