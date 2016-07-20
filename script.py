@@ -14,9 +14,9 @@ def strbin(s):
     return " ".join("{:08b}".format(ord(x)) for x in s)
 
 
-m1  = "help"
-m2  = "mate"
-key = "#m$e"
+m1  = "makes"
+m2  = "sense"
+key = "#m$e%"
 
 m1, m2, key = m1.lower(), m2.lower(), key.lower()
 
