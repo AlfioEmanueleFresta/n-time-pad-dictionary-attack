@@ -1,10 +1,8 @@
 from itertools import combinations
-
-
-# Bitwise XOR two ASCII strings (results in an ASCII string)
 from time import time
 
 
+# Bitwise XOR two ASCII strings (results in an ASCII string)
 def sxor(s1, s2):
     return ''.join(chr(ord(a) ^ ord(b)) for a, b in zip(s1, s2))
 
@@ -18,19 +16,24 @@ m1  = "makes"
 m2  = "sense"
 key = "#m$e%"
 
-m1, m2, key = m1.lower(), m2.lower(), key.lower()
+# Makes messages lowercase -- simply because our
+#  dictionary is lowercase.
+m1, m2 = m1.lower(), m2.lower()
 
 c1 = sxor(m1, key)
 c2 = sxor(m2, key)
 cx = sxor(c1, c2)
 
+# Prints messages and keys in binary
 print(" ")
-print("Key: %s (%s)" % (key, strbin(key)))
 print("M1 : %s (%s)" % (m1, strbin(m1)))
+print("Key: %s (%s)" % (key, strbin(key)))
+print("---(XOR)-----%s" % ("-"*len(strbin(key))))
 print("C1 : %s (%s)" % ("*" * len(m2), strbin(c1)))
 print(" ")
-print("Key: %s (%s)" % (key, strbin(key)))
 print("M2 : %s (%s)" % (m2, strbin(m2)))
+print("Key: %s (%s)" % (key, strbin(key)))
+print("---(XOR)-----%s" % ("-"*len(strbin(key))))
 print("C2 : %s (%s)" % ("*" * len(m2), strbin(c2)))
 print(" ")
 
