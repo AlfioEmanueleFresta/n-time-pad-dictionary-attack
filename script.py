@@ -1,8 +1,10 @@
 from itertools import combinations
 from time import time
 
+import sys
 
-# Bitwise XOR two ASCII strings (results in an ASCII string)
+
+# Bitwise XOR two strings (results in a string)
 def sxor(s1, s2):
     return ''.join(chr(ord(a) ^ ord(b)) for a, b in zip(s1, s2))
 
@@ -13,13 +15,27 @@ def strbin(s):
 
 
 # Messages and key -- CHANGE THESE!
-m1  = "makes"
-m2  = "sense"
-key = "a$s#y"
+try:
+    m1  = sys.argv[1]
+    m2  = sys.argv[2]
+    key = sys.argv[3]
+
+except:
+    print("Usage: python3 script.py <message 1> <message 2> <key>")
+    print("")
+    print("Example:")
+    print("  python3 script.py makes sense 12345")
+    print("")
+    exit(1)
 
 # Makes messages lowercase -- simply because our
 #  dictionary is lowercase.
 m1, m2 = m1.lower(), m2.lower()
+
+# Check that lengths are valid
+if not (len(m1) == len(m2) and len(m2) == len(key)):
+    print("Error: Both messages and the key all need to be of equal length.")
+    exit(1)
 
 # Check that lengths are valid
 if not (len(m1) == len(m2) and len(m2) == len(key)):
@@ -34,17 +50,17 @@ c2 = sxor(m2, key)
 cx = sxor(c1, c2)
 
 # Prints messages and keys in binary
-print(" ")
+print("")
 print(" M1: %s (%s)" % (m1, strbin(m1)))
 print("Key: %s (%s)" % (key, strbin(key)))
 print("-<XOR>-%s" % ("-"*(len(key)*10)))
 print(" C1: %s (%s)" % ("*" * len(m2), strbin(c1)))
-print(" ")
+print("")
 print(" M2: %s (%s)" % (m2, strbin(m2)))
 print("Key: %s (%s)" % (key, strbin(key)))
 print("-<XOR>-%s" % ("-"*(len(key)*10)))
 print(" C2: %s (%s)" % ("*" * len(m2), strbin(c2)))
-print(" ")
+print("")
 
 
 words_filename = "dictionary/words%d.txt" % len(cx)
