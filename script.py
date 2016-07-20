@@ -64,22 +64,26 @@ print("")
 
 
 words_filename = "dictionary/words%d.txt" % len(cx)
-with open(words_filename, 'r') as f:
+try:
+    with open(words_filename, 'r') as f:
 
-    print("Searching word combinations in %s...\n" % words_filename)
-    start_time = time()
-    words_combinations = combinations(f, 2)
+        print("Searching word combinations in %s...\n" % words_filename)
+        start_time = time()
+        words_combinations = combinations(f, 2)
 
-    found = 0
-    for w1, w2 in words_combinations:
-        w1, w2 = w1.rstrip('\n'), w2.strip('\n')
-        wx = sxor(w1, w2)
+        found = 0
+        for w1, w2 in words_combinations:
+            w1, w2 = w1.rstrip('\n'), w2.strip('\n')
+            wx = sxor(w1, w2)
 
-        if cx == wx:
-            found += 1
-            print(" * Found possible combination (%s, %s)" % (w1, w2))
-            print("   (%s, %s)\n" % (strbin(w1), strbin(w2)))
+            if cx == wx:
+                found += 1
+                print(" * Found possible combination (%s, %s)" % (w1, w2))
+                print("   (%s, %s)\n" % (strbin(w1), strbin(w2)))
 
+except FileNotFoundError:
+    print("Error: Sorry, no dictionary available for words of length %d." % len(cx))
+    exit(1)
 
 elapsed_time = time() - start_time
 print("Found %d possible combination(s) in %f seconds." % (found, elapsed_time))
