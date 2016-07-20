@@ -15,7 +15,7 @@ def strbin(s):
 # Messages and key -- CHANGE THESE!
 m1  = "makes"
 m2  = "sense"
-key = "#m$e%"
+key = "a$s#y"
 
 # Makes messages lowercase -- simply because our
 #  dictionary is lowercase.
@@ -35,15 +35,15 @@ cx = sxor(c1, c2)
 
 # Prints messages and keys in binary
 print(" ")
-print("M1 : %s (%s)" % (m1, strbin(m1)))
+print(" M1: %s (%s)" % (m1, strbin(m1)))
 print("Key: %s (%s)" % (key, strbin(key)))
-print("---(XOR)-----%s" % ("-"*len(strbin(key))))
-print("C1 : %s (%s)" % ("*" * len(m2), strbin(c1)))
+print("-<XOR>-%s" % ("-"*(len(key)*10)))
+print(" C1: %s (%s)" % ("*" * len(m2), strbin(c1)))
 print(" ")
-print("M2 : %s (%s)" % (m2, strbin(m2)))
+print(" M2: %s (%s)" % (m2, strbin(m2)))
 print("Key: %s (%s)" % (key, strbin(key)))
-print("---(XOR)-----%s" % ("-"*len(strbin(key))))
-print("C2 : %s (%s)" % ("*" * len(m2), strbin(c2)))
+print("-<XOR>-%s" % ("-"*(len(key)*10)))
+print(" C2: %s (%s)" % ("*" * len(m2), strbin(c2)))
 print(" ")
 
 
@@ -61,8 +61,8 @@ with open(words_filename, 'r') as f:
 
         if cx == wx:
             found += 1
-            print(" * Found possible combination (M1=%s, M2=%s)" % (w1, w2))
-            print("   M1=%s, M2=%s\n" % (strbin(w1), strbin(w2)))
+            print(" * Found possible combination (%s, %s)" % (w1, w2))
+            print("   (%s, %s)\n" % (strbin(w1), strbin(w2)))
 
 
 elapsed_time = time() - start_time
